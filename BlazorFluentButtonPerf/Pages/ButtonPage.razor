@@ -1,0 +1,35 @@
+﻿@page "/buttons"
+@using System.Diagnostics
+
+<PageTitle>Buttons</PageTitle>
+
+<h1>Buttons</h1>
+
+<FluentCard class="button-page-content">
+    @for (int i = 0; i < 2500; i++)
+    {
+        <div>
+            <FluentButton Appearance="Appearance.Accent">Button</FluentButton>
+
+            @* <FluentBadge Appearance="Appearance.Accent">Badge</FluentBadge> *@
+        </div>
+    }
+</FluentCard>
+
+@code {
+    private Stopwatch _stopwatch;
+
+    protected override void OnInitialized()
+    {
+        _stopwatch = Stopwatch.StartNew();
+        base.OnInitialized();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        _stopwatch.Stop();
+        Debug.WriteLine($"Rendering took {_stopwatch.ElapsedMilliseconds} ms");
+    }
+}
